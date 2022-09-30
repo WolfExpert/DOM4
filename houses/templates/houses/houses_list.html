@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% load thumbnail %}
+{% load humanize %}
 
 {% block application %}
 
@@ -12,7 +13,7 @@
 {% for house in houses %}
     <div>
         <h2><a href="{% url 'house' house_id=house.id %}">{{ house.name }}</a></h2>
-    <div>{{ house.price }}</div>
+    <div>{{ house.price|intcomma }}</div>
     <div>{{ house.description }}</div>
 
     {% thumbnail house.photo '325x200' crop='center' as im %}
