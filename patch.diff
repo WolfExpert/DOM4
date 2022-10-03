@@ -1,0 +1,475 @@
+From a7ac4c9e6072708113982328235f943fcab86908 Mon Sep 17 00:00:00 2001
+From: WolfExpert <89626023+WolfExpert@users.noreply.github.com>
+Date: Fri, 30 Sep 2022 11:27:26 +0300
+Subject: [PATCH] A little design
+
+---
+ db.sqlite3                                    | Bin 155648 -> 155648 bytes
+ .../__pycache__/settings.cpython-310.pyc      | Bin 2521 -> 2627 bytes
+ dom_u_morya/settings.py                       |  10 +-
+ houses/templates/houses/houses_list.html      |   3 +-
+ static/css/styles.css                         | 221 ++++++++++++++++++
+ static/images/logo.png                        | Bin 0 -> 4620 bytes
+ templates/footer.html                         |   3 +
+ templates/header.html                         |   2 +
+ templates/index.html                          |   5 +-
+ 9 files changed, 239 insertions(+), 5 deletions(-)
+ create mode 100644 static/css/styles.css
+ create mode 100644 static/images/logo.png
+ create mode 100644 templates/footer.html
+ create mode 100644 templates/header.html
+
+diff --git a/db.sqlite3 b/db.sqlite3
+index f361f569c391c5f84fab085fe64a114f670c1e60..717bb451594c9bc6d0ac8137a7cae2eccbf705b9 100644
+GIT binary patch
+delta 145
+zcmZoTz}awsbAmKu^h6nF#^{X+qWX-2&1L%A%k&xh3YZ1?XHREez^K4Hn}73W!Gc15
+zHdbavMs~sJ3)eFy17+7tXWzi6$i%+}DA~l%%EHXaD7by&e#T${W<k!N>FgJPlAJ-C
+w9R)Nvnd$_mU%APcD`=r$Xl!L*VP$BbXJBezWN5to(oM!at&E)0`{kJm0jB{dga7~l
+
+delta 98
+zcmZoTz}awsbAmKu)I=F)#;A=6qWX*i&1L%A%k&xh3YZ1>7fxqiz^K5ud9z?aCI9q=
+z>lu@Qf*Yr^Z(vje3U%^t-?*PKSb$l8^U`$o3qUbPfmNK_FWqF^)5^#(y<eWG5CAYm
+BAl?7~
+
+diff --git a/dom_u_morya/__pycache__/settings.cpython-310.pyc b/dom_u_morya/__pycache__/settings.cpython-310.pyc
+index 598ec95ce8a7fc870d0e0e9c86db7f62dce41f3d..1b07a2a75cfea75c417cc719c2cc074fa45a8955 100644
+GIT binary patch
+delta 460
+zcmW+y%}U&06#ed(JIOb3qR|=W$2dBcZmckfNa?mz3xlnTj;p&c#JM3RXi`k<LJBT?
+z0?F2e`U<{4p_{%!XX!(@5L){+7w$Rtz~LOYznec>PUbka(DUu{_T<O4)4zPwf&~c%
+zmM1_`vvFdaA|Z$n!`c<xns*|x5{ncg)wxD?BxoiQY~BMkG+UY-Ry51?P_gZa2)M@o
+z9gTa4ft?$SfaZ9XT%KcBd*(gC3pX+bx}4`Gx3sCrixsvj?8FcuEpV5b+@qE*UDVs=
+zCF+DS>E8Bqh<7J->=G}Nr&Zq*w9G5i*A=T;4|K&^Rk6ZyEY@EIn;?X}lLTp$4f3!k
+z;xx(!4=%h0*e|!`KG@}z{MEbYaOD|Jva~phkA}zRr$HKDgb#bh8&qWGMNq_(^4$8~
+zU0<DAzR%gj_sPog;n$!zp2{pQ|5(p`tQ00$oKD^G!TW>JhmWIAyJLT6^krN=ski2a
+u{{7iTxmDk5AL<i@nrVP*poIoXRZ~uRU4PeVNPIz483@vlU;_SCFaH2u#c`ql
+
+delta 329
+zcmW-cyGjF55Qfj3o!vc~>?WJd=DNm96(U#)VrwY|B#n&47MZvtC;@B5!Y7aeRw*<u
+zV39|#5#K;xM6giD49xs9%+EK>Yx+@-=228q63dId@#rDy-M!1eiWCFuOSsacK~40;
+zxrZlwRx@|zlE)7DjARN$L7~`P0+mEP(K7oKvYB`sWU2s0{@;|BFa-`5SO7&FQH3j9
+z6;GTgt}XNwsLBb~#dDf)Dw1$xU7J%VkYa98joXyS(Yj>H9cplwnu5qOMJ?W-wjg^l
+zZwhj2jqLFDNDX#Y2^@kw(L)IALcgtUon5pq{!KU>bU*z(=lM9#?UDJm=fS?$m-nyx
+k_Axk4&!j~ahOvV_I;f3nLi-gQ#ONB0pdAe!;E(zJ0~c#Y(f|Me
+
+diff --git a/dom_u_morya/settings.py b/dom_u_morya/settings.py
+index 6769b45..bcb2e87 100644
+--- a/dom_u_morya/settings.py
++++ b/dom_u_morya/settings.py
+@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
+ For the full list of settings and their values, see
+ https://docs.djangoproject.com/en/4.1/ref/settings/
+ """
+-
++import os.path
+ from pathlib import Path
+ 
+ # Build paths inside the project like this: BASE_DIR / 'subdir'.
+@@ -39,7 +39,8 @@ INSTALLED_APPS = [
+     'django.contrib.staticfiles',
+     'houses.apps.HousesConfig',
+     'sorl.thumbnail',
+-    'orders'
++    'orders',
++    'django.contrib.humanize'
+ ]
+ 
+ MIDDLEWARE = [
+@@ -119,12 +120,15 @@ USE_TZ = True
+ # https://docs.djangoproject.com/en/4.1/howto/static-files/
+ 
+ STATIC_URL = 'static/'
+-
++STATICFILES_DIRS = [
++    os.path.join(BASE_DIR, "static")
++]
+ # Default primary key field type
+ # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+ 
+ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ 
++
+ MEDIA_ROOT = BASE_DIR / 'media'
+ MEDIA_URL = '/media/'
+ 
+diff --git a/houses/templates/houses/houses_list.html b/houses/templates/houses/houses_list.html
+index 314bc73..b013e47 100644
+--- a/houses/templates/houses/houses_list.html
++++ b/houses/templates/houses/houses_list.html
+@@ -1,5 +1,6 @@
+ {% extends "index.html" %}
+ {% load thumbnail %}
++{% load humanize %}
+ 
+ {% block application %}
+ 
+@@ -12,7 +13,7 @@
+ {% for house in houses %}
+     <div>
+         <h2><a href="{% url 'house' house_id=house.id %}">{{ house.name }}</a></h2>
+-    <div>{{ house.price }}</div>
++    <div>{{ house.price|intcomma }}</div>
+     <div>{{ house.description }}</div>
+ 
+     {% thumbnail house.photo '325x200' crop='center' as im %}
+diff --git a/static/css/styles.css b/static/css/styles.css
+new file mode 100644
+index 0000000..700c686
+--- /dev/null
++++ b/static/css/styles.css
+@@ -0,0 +1,221 @@
++html, body {
++    margin: 0;
++    padding: 0;
++    font-family: "Open Sans";
++}
++
++header {
++    height: 60px;
++    padding: 17px 0 22px 0;
++    background-color: #eeedec;
++    margin-bottom: 20px;
++}
++
++header .logo {
++    width: 227px;
++    height: 61px;
++    margin: 0 auto;
++    display: block;
++}
++
++.houses {
++    width: 1024px;
++    margin: 0 auto;
++}
++
++.houses .house {
++    float: left;
++    width: 325px;
++    margin-right: 20px;
++    display: block;
++    height: 270px;
++    margin-bottom: 20px;
++}
++
++.houses .house:nth-child(3n+3) {
++    margin-right: 0;
++}
++
++.houses .house .img {
++    width: 325px;
++    height: 200px;
++    display: block;
++}
++
++.houses .house .img img {
++    width: 325px;
++    height: 200px;
++}
++
++.houses .house h2 {
++    font-size: 18px;
++    line-height: 18px;
++    height: 20px;
++    margin-bottom: 5px;
++    color: #5a5a5a;
++    font-weight: normal;
++    text-align: center;
++    text-transform: uppercase;
++}
++
++.houses .house h2 a {
++    color: #5a5a5a;
++    text-decoration: none;
++}
++
++.houses .house .price {
++    font-size: 14px;
++    font-weight: bold;
++    text-align: center;
++    color: #5a5a5a;
++}
++
++footer {
++    height: 35px;
++    line-height: 36px;
++    background-color: #5a5a5a;
++    text-align: center;
++    text-transform: uppercase;
++    color: #aeaeae;
++    margin: 0;
++    padding: 0;
++    font-size: 14px;
++}
++
++.search-form {
++    width: 800px;
++    display: block;
++    margin: 0 auto 30px auto;
++}
++
++.search-form p {
++    float: left;
++}
++
++.search-form input[type=number] {
++    border: 1px solid #f0efee;
++    width: 100px;
++    padding: 5px;
++    margin-right: 10px;
++}
++
++.search-form input[type=submit] {
++    background-color: #2bd07c;
++    padding: 5px 10px;
++    font-weight: bold;
++    color: white;
++    font-size: 14px;
++    margin-top: 17px;
++    margin-left: 20px;
++    border: 0;
++}
++
++.search-form select {
++    border: 1px solid #f0efee;
++    width: 150px;
++    padding: 5px;
++    margin-right: 10px;
++    font-size: 14px;
++}
++
++.search-form .h {
++    margin-right: 15px;
++}
++
++.search-form label {
++    color: #5a5a5a;
++    font-weight: normal;
++}
++
++.house-name {
++    font-size: 28px;
++    line-height: 28px;
++    height: 28px;
++    margin-bottom: 20px;
++    color: #5a5a5a;
++    font-weight: normal;
++    text-align: left;
++    text-transform: uppercase;
++}
++
++.house-name .price {
++    font-weight: bold;
++    border: 2px solid #5a5a5a;
++    color: #5a5a5a;
++    font-size: 18px;
++    line-height: 24px;
++    height: 24px;
++    padding: 0 10px;
++    margin-left: 10px;
++}
++
++.house-detail {
++    width: 1024px;
++    margin: 0 auto 20px auto;
++}
++
++.house-detail .house {
++    float: left;
++    width: 675px;
++}
++
++.house-detail .order {
++    float: left;
++    margin-left: 20px;
++}
++
++.house-detail .house img {
++    width: 675px;
++    height: 350px;
++    display: block;
++    margin-bottom: 10px;
++}
++
++.house-detail .house .description {
++    font-size: 14px;
++    line-height: 20px;
++    margin-bottom: 40px;
++}
++
++.house-detail .order {
++    background-color: #eeedec;
++    width: 289px;
++    padding: 5px 20px;
++}
++
++.house-detail .order h2 {
++    font-size: 18px;
++    line-height: 18px;
++    height: 18px;
++    color: #5a5a5a;
++}
++
++.order-form p {
++    margin-bottom: 5px;
++}
++
++.order-form label {
++    display: block;
++    margin-bottom: 5px;
++}
++
++.order-form input[type=text] {
++    padding: 10px 7px;
++    width: 270px;
++    border: 0;
++    font-size: 14px;
++}
++
++.order-form input[type=submit] {
++    width: 285px;
++    padding: 15px 0;
++    border: 0;
++    font-size: 16px;
++    color: white;
++    text-align: center;
++    background-color: #2bd07c;
++    margin-bottom: 15px;
++    cursor: pointer;
++    margin-top: 20px;
++}
++
+diff --git a/static/images/logo.png b/static/images/logo.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..8ddd6b2762764cc2dbde4e07f8cf574ec66174e2
+GIT binary patch
+literal 4620
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/templates/footer.html b/templates/footer.html
+new file mode 100644
+index 0000000..86bb864
+--- /dev/null
++++ b/templates/footer.html
+@@ -0,0 +1,3 @@
++<footer>
++    Дом у моря
++</footer>
+\ No newline at end of file
+diff --git a/templates/header.html b/templates/header.html
+new file mode 100644
+index 0000000..58bff2c
+--- /dev/null
++++ b/templates/header.html
+@@ -0,0 +1,2 @@
++{% load static %}
++<header><a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.png' %}" alt="Дом у моря"></a></header>
+diff --git a/templates/index.html b/templates/index.html
+index 1916526..424fe55 100644
+--- a/templates/index.html
++++ b/templates/index.html
+@@ -1,10 +1,13 @@
+-<!DOCTYPE html>
++<!DOCTYPE html>{% load static %}
+ <html lang="ru">
+ <head>
+     <meta charset="UTF-8">
+     <title>Дом у моря</title>
++    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+ </head>
+ <body>
++{% include "header.html" %}
+ {% block application %}{% endblock %}
++{% include "footer.html" %}
+ </body>
+ </html>
+-- 
+2.37.3.windows.1
+
